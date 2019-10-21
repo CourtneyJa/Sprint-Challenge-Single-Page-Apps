@@ -1,32 +1,20 @@
-import React, { useState, useEffect } from "react";
-import {Formik, Form, Field} from 'formik';
-import CharacterCard from './CharacterCard';
-
-import axios from 'axios';
+import React from "react";
+import styled from 'styled-components';
 
 
+const SearchDiv = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: center;`
 
-export default function SearchForm(props) {
 
-
-  const [cast, setCast] = useState([]);
-
-  useEffect(()=>{
-    const getCast = ()=>{
-      axios.get("https://rickandmortyapi.com/api/character/")
-           .then(res =>{
-             setCast(res.data.results);
-           })
-           .catch(err=>{
-             console.log("burp", err);
-           });
-    }
-    getCast();
-  }, []);
- 
-  return (
-    <div className="search-form">
-      
-    </div>
+export default function SearchForm () {
+  return(
+    <SearchDiv>
+      <form>
+        <input id="name" type="text" name="search" placeholder="Enter name here"/>
+        <button type="submit">Submit</button>
+      </form>
+    </SearchDiv>
   );
 }

@@ -5,11 +5,11 @@ export default function LocationsList() {
     const [places, setPlaces]= useState([]);
 
     useEffect(()=>{
-        axios.get(`https://rickandmortyapi.com/api/location/`)
+        axios.get('https://rickandmortyapi.com/api/location/')
              .then(res=>{
                  console.log(res);
-                 const place = res.data.results
-                 setPlaces(place)
+                 const location = res.data.results
+                 setPlaces(location)
              })
              .catch(err=>{
                  console.log("Get a job Jerry", err);
@@ -18,8 +18,8 @@ export default function LocationsList() {
 
     return(
         <div>
-            {places.map(obj =>{
-                return <div key = {obj.name} name = {obj.name} type= {obj.type} dimension = {obj.dimension} />;
+            {places.map((place) =>{
+                return(<div key = {place.name} name = {place.name} type= {place.type} dimension = {place.dimension} />)
             })}
         </div>
     );

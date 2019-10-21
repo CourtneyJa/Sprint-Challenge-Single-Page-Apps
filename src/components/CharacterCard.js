@@ -1,28 +1,29 @@
 import React from "react";
-import {Link} from 'react-router-dom';
+import styled from 'styled-components';
 
-const CharacterCard= cast => {
-  const {name, status, species, image, id} = cast.character;
-  return (
-    <div className = "cast-wrap">
-      <div className = "cast-card">
-        <Link to ={`/results/${id}`}>
-          <h3>{name}</h3>
-        </Link>
-        <Link to= "/list">
-          <div className= "pic">
-            <img src= {image} alt = {`Pic of ${name}`}/>
-          </div>
-        </Link>
-        <div className="squanch">
-          Species: <strong>{species}</strong>
-        </div>
-        <div className="stats">
-          Status: <em>{status}</em>
-        </div>
-      </div>
-    </div>
-  );
-};
+const Chardiv = styled.div`
+width: 40%;
+height: 40%;
+`
+
+const CardContainer= styled.div`
+width: 70%;
+padding: 2%;`
+
+const CharacterCard = props =>{
+  return(      
+    <Chardiv>
+      <CardContainer>
+      <img src={props.image} alt="Cast Pic"/>          
+      </CardContainer>
+      <h2>Name: {props.name}</h2>
+      <p>Species: {props.species}</p>
+      <p>Status: {props.status}</p>
+      <p>Location: {props.location}</p>
+    </Chardiv>
+  
+  )
+}
 
 export default CharacterCard;
+
