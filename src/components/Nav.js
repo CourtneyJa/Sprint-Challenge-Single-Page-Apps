@@ -4,7 +4,10 @@ import styled from 'styled-components';
 
 const PortalMenu = styled.div`
 display: flex;
-justify-content: center;`
+justify-content: center;
+&:hover{
+    background-color: rgba(35, 207, 19, 0.3);
+}`
 
 const Button = styled.button`
 font-size 16px;
