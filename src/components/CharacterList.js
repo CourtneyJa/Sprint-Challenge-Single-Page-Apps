@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import SearchForm from "./SearchForm";
 import axios from "axios";
 import CharacterCard from "./CharacterCard";
 import styled from 'styled-components';
@@ -18,6 +19,11 @@ export default function CharacterList() {
   //const [state, setState] = useState([]);
 
   const [cast, setCast] = useState([]);
+  const [search, setSearch] = useState("");
+
+  const handleChange = e =>{
+    setSearch(e.target.value)
+  };
 
   useEffect(() => {
     // TODO: Add API Request here - must run in `useEffect`
@@ -25,7 +31,8 @@ export default function CharacterList() {
     //const getCast=() =>{
       axios.get("https://rickandmortyapi.com/api/character/")
            .then(res =>{
-             const people = res.data.results
+             const people = res.data.results.filter(chars=> chars.name.toLowerCase().includes(search.toLocaleLowerCase())
+             );
              setCast(people);
            })
            .catch(err=>{
@@ -34,14 +41,22 @@ export default function CharacterList() {
           //  if (localStorage.getItem("characters") === null);{
           //    fetch();
           //  }   
-  }, []);
+  }, [search]);
 
   return (
+    <>
+    <SearchForm value={search} onChange={handleChange}/>
     <Cardcont className="character-list">
       {cast.map(chars =>{
-        return <CharacterCard key={chars.id} image={chars.image} name={chars.name} status={chars.status} species={chars.species}/>
-      })}
+        return (<CharacterCard 
+        key={chars.id} 
+        image={chars.image}
+        name={chars.name} 
+        status={chars.status} 
+        species={chars.species}/>
+      )})}
     </Cardcont>
+    </>
   );
 }
 
