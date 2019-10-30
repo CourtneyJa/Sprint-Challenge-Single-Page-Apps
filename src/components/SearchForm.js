@@ -1,10 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
+import styled from 'styled-components';
 
-export default function SearchForm() {
- 
-  return (
-    <section className="search-form">
-     // Add a search form here
-    </section>
+
+const SearchDiv = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: center;`
+
+
+export default function SearchForm (props) {
+  return(
+    <SearchDiv>
+      <form>
+        <input id="name" type="text" name="search" placeholder="Enter name here" value={props.value} onChange={props.onChange}/>
+        <button type="submit">Submit</button>
+      </form>
+    </SearchDiv>
   );
 }
